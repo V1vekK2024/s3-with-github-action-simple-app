@@ -5,7 +5,7 @@ jobs:
         runs-on: ubuntu-latest
     steps: 
         - name: checkout code
-          uses: action/checkout@v4
+          uses: actions/checkout@v4
         
         - name: "configure aws credentials"
           uses: aws-actions/configure-aws-credentials@v6
@@ -16,4 +16,4 @@ jobs:
             aws-region: ${{ secrets.AWS_REGION }}
 
         - name: "Upload file on s3"
-          run:  aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }}
+          run:  aws s3 sync . s3://${{ secrets.S3_BUCKET_NAME }} --delete
